@@ -10,10 +10,8 @@ well nothing is advanced you can simply add it as a bash command to look like "l
 ```sh
 nano /bin/rs
 ```
-```sh
 #!/bin/bash
 python /home/tools/rs/rs.py $1 $2
-```
 
 ```sh
 chmod +x /bin/rs
