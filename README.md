@@ -4,7 +4,7 @@ This simple tool is made for Lazy people who are lazy to visit pentestmonkey blo
 ![screen_1](https://i.imgur.com/0oBQa4f.png)
 
 # Why RS 
-Fast way to read the default tun0 ip adress ,get the full list of the possible reverse shells ,and openning an nc port to get ur pwned system shell *_* ,I use it for Hackthebox challenges and OSCP machines.
+Fast way to read the default tun0 ip adress ,get the full list of the possible reverse shells ,and openning an nc port to get ur pwned system shell ^-^ ,I use it for Hackthebox challenges and OSCP machines.
 
 # Usage:
 
@@ -35,6 +35,10 @@ python /home/tools/rs/rs.py $1 $2
 chmod +x /bin/rs
 ```
 Finally:
+```sh
+rs 1234
+```
+or
 ```sh
 rs 127.0.0.1 1234
 ```
