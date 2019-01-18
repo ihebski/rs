@@ -3,10 +3,23 @@ This simple tool is made for Lazy people who are lazy to visit pentestmonkey blo
 
 ![screen_1](https://i.imgur.com/0oBQa4f.png)
 
+# Why RS 
+Fast way to read the default tun0 ip adress ,get the full list of the possible reverse shells ,and openning an nc port to get ur pwned system shell *_* ,I use it for Hackthebox challenges and OSCP machines.
+
 # Usage:
+
+## Setup listening port only (the tool will read the VPN address on tun0 interface )
+
+
+```sh
+python rs.py 1234
+```
+
+## IP & Port
 ```sh
 python rs.py 127.0.0.1 1234
 ```
+
 # Advanced usage:
 Well nothing is advanced you can simply add it as a bash command to look like "ls"    xD
 
@@ -25,3 +38,5 @@ Finally:
 ```sh
 rs 127.0.0.1 1234
 ```
+
+
