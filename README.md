@@ -4,7 +4,7 @@ This simple tool is made for Lazy people who are lazy to visit pentestmonkey blo
 ![screen_1](https://i.imgur.com/Cej2OI3.png)
 
 # Why RS 
-Fast way to read the default tun0 ip adress ,get the full list of the possible reverse shells ,and open an nc port to get ur pwned system shell ^-^ ,I use it for Hackthebox challenges and OSCP lab machines.
+Fast way to read the default tun0 ip adress ,get the full list of the possible reverse shells ,and open an nc port to get ur pwned system shell ^-^ ,I use it for Hackthebox machines .
 
 # Usage:
 
