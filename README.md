@@ -1,5 +1,6 @@
 # RS
 This simple tool is made for Lazy people who are lazy to visit pentestmonkey blog x)))
+UPDATE: migrate fork to python3.6+ and compact the output
 
 ![screen_1](https://i.imgur.com/Cej2OI3.png)
 
