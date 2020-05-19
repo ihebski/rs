@@ -1,10 +1,12 @@
 # RS
 
-Getting reverse shells with your IP has never been easier. How easy? ls easy!
-It's a fast way to read the default tun0 ip address, get the full list of Reverse Shell payloads,and listen using netcat on a port to get a shell back. Being used mainly for Hackthebox machines.
+Getting reverse shells with your IP has never been easier.
+\nHow easy? ls easy!
+\nIt's a fast way to read the default tun0 ip address, get the full list of Reverse Shell payloads,and listen using netcat on a port to get a shell back.
+\nBeing used mainly for Hackthebox machines.
 
 What did I changed?
-- Migrate fork to python3.6+ and compact the output
+- Migrate fork to python3.6+ and compact the output (Thanks to @t0nik0)
 - Added multi choice based on https://github.com/0xprashant/Reverse-shell-Generator- 
 - Added more payloads
 
