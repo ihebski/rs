@@ -18,7 +18,7 @@ Let me know if you need to add new features, error handling, payloads or other f
 # How to use:
 
 ## Setup listening port only (the tool will read the VPN address on tun0 interface )
-
+### It's a must to install rlwrap for readline support. You'll thank me for that ;)
 
 ```sh
 python3 rs.py 1234
