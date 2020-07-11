@@ -104,10 +104,10 @@ def main(ip,port):
 	
 	print(Fore.GREEN, '\n[+] Incoming shell *-*', end='')
 	if port > 1023:
-		cmd = f'nc -lnvp {port}'
+		cmd = f'rlwrap nc -lnvp {port}'
 		print('\033[39m')
 	else:
-		cmd = f'sudo nc -lnvp {port}'
+		cmd = f'sudo rlwrap nc -lnvp {port}'
 		print(Fore.RED, 'with sudo', '\033[39m')
 	subprocess.call([cmd], shell=True)
 
