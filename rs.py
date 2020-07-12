@@ -9,11 +9,16 @@ import sys
 import os
 from colorama import Fore, Back, Style
 import subprocess
+import shutil
 
 
 def start(argv):
+	rlwrap = shutil.which('rlwrap') is not None
 	if len(sys.argv) < 2:
 		print('Dude, IP or Port???	 ¯\_(ツ)_/¯')
+		sys.exit()
+	if rlwrap == False:
+		print('You need to install rlwrap to support better shellz...')
 		sys.exit()
 	else:
 		if len(sys.argv) == 3:
@@ -24,6 +29,7 @@ def start(argv):
 			except:
 				print(Fore.RED, "[X] VPN device was not found. Try to reset your VPN service or specify manually the listening IP. EXITING")
 				sys.exit()
+				
 			main(ip,int(argv[0]))
 
 def print_shell(ip,port,choice):
